@@ -14,21 +14,21 @@ Book.prototype.info = function() {
     console.log("running info().")
 }
 
+// Adds new book object to library array
 function addBookToLibrary(book) {
     myLibrary.push(book);
 }
 
 let addBookForm = document.getElementById("addBookForm");
+let title = document.getElementById("titleInput");
+let author = document.getElementById("authorInput");
+let pages = document.getElementById("pagesInput");
+let status = document.getElementById("statusInput");
 
 // Function that opens the form to add a book
 function openForm() {
     addBookForm.style.display = "block";
 }
-
-let title = document.getElementById("titleInput");
-let author = document.getElementById("authorInput");
-let pages = document.getElementById("pagesInput");
-let status = document.getElementById("statusInput");
 
 let newTitle = "";
 let newAuthor = "";
@@ -57,16 +57,3 @@ function getInput(element) {
 function closeForm() {
     addBookForm.style.display = "none";
 } 
-
-
-
-
-/*
-// Sample books
-let book1 = new Book("LOTR", "JRRT", "500", "Completed");
-let book2 = new Book("LHarry Potter", "JK R", "200", "Unread");
-
-//Add sample books to array
-addBookToLibrary(book1);
-addBookToLibrary(book2);
-*/
