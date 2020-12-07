@@ -16,7 +16,6 @@ Book.prototype.info = function() {
 
 function addBookToLibrary(book) {
     myLibrary.push(book);
-    console.log("Add book to array.")
 }
 
 let addBookForm = document.getElementById("addBookForm");
@@ -26,16 +25,38 @@ function openForm() {
     addBookForm.style.display = "block";
 }
 
+let title = document.getElementById("titleInput");
+let author = document.getElementById("authorInput");
+let pages = document.getElementById("pagesInput");
+let status = document.getElementById("statusInput");
+
+let newTitle = "";
+let newAuthor = "";
+let newPages = "";
+let newStatus = "";
 
 // Creates a new book object with info from form
 function createNewBook() {
+    newTitle = title.value;
+    newAuthor = author.value;
+    newPages = pages.value;
+    newStatus = status.value;
+    let book1 = new Book(newTitle, newAuthor, newPages, newStatus);
+    console.log(book1);
+    addBookToLibrary(book1);
+    console.log(myLibrary);
     closeForm();
+}
+
+// Returns elements value.
+function getInput(element) {
+    return element.value;
 }
 
 // Closes the add book form when submit button is clicked
 function closeForm() {
     addBookForm.style.display = "none";
-}
+} 
 
 
 
