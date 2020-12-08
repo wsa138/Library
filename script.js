@@ -1,4 +1,5 @@
-let myLibrary = [];
+let myLibrary = [{title: "testTitle", author: "testAuthor", pages: "testPages",
+    status: "testStatus"}];
 let addedBook;
 
 //Constructor function for Book
@@ -9,11 +10,12 @@ function Book(title, author, pages, status) {
     this.status = status;
 }
 
+
 function createNewBook() {
-    event.preventDefault();
     addedBook = new Book(newTitle.value, newAuthor.value, newPages.value, newStatus.value);
     console.log(addedBook);
     addBookToLibrary(addedBook);
+    closeForm();
 }
 
 // Adds new book object to library array
