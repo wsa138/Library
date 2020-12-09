@@ -13,7 +13,6 @@ function Book(title, author, pages, status) {
 
 function createNewBook() {
     addedBook = new Book(newTitle.value, newAuthor.value, newPages.value, newStatus.value);
-    console.log(addedBook);
     addBookToLibrary(addedBook);
     createBook();
     closeForm();
@@ -59,12 +58,22 @@ element.appendChild(para);
 // Loop through myLibrary and console logs index as well as book information
 function createBook() {
     myLibrary.forEach(function(item, index) {
-        console.log(index);
-        
+        let newElement = document.createElement("p");
+        newElement.innerHTML = index + 1;
+        newElement.id = `book${index}`;
+        let bookSection = document.getElementById("allBooks");
+        bookSection.appendChild(newElement);
+
         for (var key in item) {
             if (item.hasOwnProperty(key)) {
-                console.log(key, item[key]);
+                let prop = item[key]
+                console.log(prop);
+                let newBookProp = document.createElement("p");
+                newBookProp.innerHTML = prop;
+                let bookInfoParent = document.getElementById(`book${index}`)
+                bookInfoParent.appendChild(newBookProp);
             }
         }
     })  
 }
+
