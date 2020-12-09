@@ -15,6 +15,7 @@ function createNewBook() {
     addedBook = new Book(newTitle.value, newAuthor.value, newPages.value, newStatus.value);
     console.log(addedBook);
     addBookToLibrary(addedBook);
+    createBook();
     closeForm();
 }
 
@@ -46,3 +47,24 @@ function openForm() {
 function closeForm() {
     addBookForm.style.display = "none";
 } 
+
+// Create a sample element in html
+var para = document.createElement("p");
+var node = document.createTextNode("All the book elements here")
+para.appendChild(node);
+
+var element = document.getElementById("allBooks");
+element.appendChild(para);
+
+// Loop through myLibrary and console logs index as well as book information
+function createBook() {
+    myLibrary.forEach(function(item, index) {
+        console.log(index);
+        
+        for (var key in item) {
+            if (item.hasOwnProperty(key)) {
+                console.log(key, item[key]);
+            }
+        }
+    })  
+}
