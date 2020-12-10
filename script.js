@@ -1,5 +1,4 @@
-let myLibrary = [{title: "testTitle", author: "testAuthor", pages: "testPages",
-    status: "testStatus"}];
+let myLibrary = [];
 let addedBook;
 
 //Constructor function for Book
@@ -14,7 +13,7 @@ function Book(title, author, pages, status) {
 function createNewBook() {
     addedBook = new Book(newTitle.value, newAuthor.value, newPages.value, newStatus.value);
     addBookToLibrary(addedBook);
-    createBook();
+    createAddedBook();
     closeForm();
 }
 
@@ -55,25 +54,43 @@ para.appendChild(node);
 var element = document.getElementById("allBooks");
 element.appendChild(para);
 
-// Loop through myLibrary and console logs index as well as book information
-function createBook() {
-    myLibrary.forEach(function(item, index) {
-        let newElement = document.createElement("p");
-        newElement.innerHTML = index + 1;
-        newElement.id = `book${index}`;
-        let bookSection = document.getElementById("allBooks");
-        bookSection.appendChild(newElement);
 
-        for (var key in item) {
-            if (item.hasOwnProperty(key)) {
-                let prop = item[key]
-                console.log(prop);
-                let newBookProp = document.createElement("p");
-                newBookProp.innerHTML = prop;
-                let bookInfoParent = document.getElementById(`book${index}`)
-                bookInfoParent.appendChild(newBookProp);
-            }
-        }
-    })  
+// Check for the position of newly added book to myLibrary and create that book in html
+function createAddedBook() {
+    //Sets indexNum to array index of recently added book.
+    let bookSection = document.getElementById("allBooks");
+    let indexNum = myLibrary.length - 1;
+    let newElement = document.createElement("div");
+    let idNum = (`book${indexNum + 1}`);
+    newElement.id = idNum;
+    newElement.classname = ("bookNumber");
+    newElement.innerHTML = (`#${indexNum + 1}`);
+    bookSection.appendChild(newElement);
+
+    let newBookTitle = myLibrary[indexNum].title;
+    let newBookAuthor = myLibrary[indexNum].author;
+    let newBookPages = myLibrary[indexNum].pages;
+    let newBookStatus = myLibrary[indexNum].status;
+
+    let currentBookDiv = document.getElementById(idNum);
+
+    let titleElement = document.createElement("p");
+    titleElement.className = ("bookTitle");
+    titleElement.innerHTML = newBookTitle;
+    currentBookDiv.appendChild(titleElement);
+    
+    let authorElement = document.createElement("p");
+    authorElement.className = ("bookAuthor");
+    authorElement.innerHTML = newBookAuthor;
+    currentBookDiv.appendChild(authorElement);
+
+    let pagesElement = document.createElement("p");
+    pagesElement.className = ("bookPages");
+    pagesElement.innerHTML = newBookPages;
+    currentBookDiv.appendChild(pagesElement);
+
+    let statusElement = document.createElement("p");
+    statusElement.className = ("bookStatus");
+    statusElement.innerHTML = newBookStatus;
+    currentBookDiv.appendChild(statusElement);
 }
-
