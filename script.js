@@ -13,7 +13,7 @@ function Book(title, author, pages, status) {
 function createNewBook() {
     addedBook = new Book(newTitle.value, newAuthor.value, newPages.value, newStatus.value);
     addBookToLibrary(addedBook);
-    createAddedBook();
+    createBookCard();
     closeForm();
 }
 
@@ -54,10 +54,7 @@ para.appendChild(node);
 var element = document.getElementById("allBooks");
 element.appendChild(para);
 
-
-// Check for the position of newly added book to myLibrary and create that book in html
-function createAddedBook() {
-    //Sets indexNum to array index of recently added book.
+function createBookCard() {
     let bookSection = document.getElementById("allBooks");
     let indexNum = myLibrary.length - 1;
     let newElement = document.createElement("div");
@@ -67,30 +64,31 @@ function createAddedBook() {
     newElement.innerHTML = (`#${indexNum + 1}`);
     bookSection.appendChild(newElement);
 
-    let newBookTitle = myLibrary[indexNum].title;
-    let newBookAuthor = myLibrary[indexNum].author;
-    let newBookPages = myLibrary[indexNum].pages;
-    let newBookStatus = myLibrary[indexNum].status;
+    let idx = myLibrary.length - 1;
+    let newestBook = myLibrary[idx];
+    for (let property in newestBook) {
+        switch (property) {
+            case "title":
+                createBookElement(newestBook, property, idNum);
+                break;
+            case "author":
+                createBookElement(newestBook, property, idNum);
+                break;
+            case "pages":
+                createBookElement(newestBook, property, idNum);
+                break;
+            case "status":
+                createBookElement(newestBook, property, idNum);
+                break;
+        }
+    }
+}
 
+// Creates new HTML element
+function createBookElement(newestBook, property, idNum) {
     let currentBookDiv = document.getElementById(idNum);
-
-    let titleElement = document.createElement("p");
-    titleElement.className = ("bookTitle");
-    titleElement.innerHTML = newBookTitle;
-    currentBookDiv.appendChild(titleElement);
-    
-    let authorElement = document.createElement("p");
-    authorElement.className = ("bookAuthor");
-    authorElement.innerHTML = newBookAuthor;
-    currentBookDiv.appendChild(authorElement);
-
-    let pagesElement = document.createElement("p");
-    pagesElement.className = ("bookPages");
-    pagesElement.innerHTML = newBookPages;
-    currentBookDiv.appendChild(pagesElement);
-
-    let statusElement = document.createElement("p");
-    statusElement.className = ("bookStatus");
-    statusElement.innerHTML = newBookStatus;
-    currentBookDiv.appendChild(statusElement);
+    let bookElement = document.createElement("p");
+    bookElement.className = (`book${property}`);
+    bookElement.innerHTML = (newestBook[property]);
+    currentBookDiv.appendChild(bookElement);
 }
