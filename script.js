@@ -82,13 +82,30 @@ function createBookCard() {
                 break;
         }
     }
+    removeBook(idNum);
 }
 
 // Creates new HTML element
 function createBookElement(newestBook, property, idNum) {
     let currentBookDiv = document.getElementById(idNum);
     let bookElement = document.createElement("p");
-    bookElement.className = (`book${property}`);
+    bookElement.className = (`book${property} index${idNum.slice(-1)}`);
     bookElement.innerHTML = (newestBook[property]);
     currentBookDiv.appendChild(bookElement);
+}
+
+// Creates a remove button on each book's card
+function removeBook(idNum) {
+    let currentBookDiv = document.getElementById(idNum);
+    let removeButton = document.createElement("button");
+    removeButton.innerHTML = "Remove";
+    currentBookDiv.appendChild(removeButton);
+
+    // Removes all the children of the book parent node
+    removeButton.addEventListener("click", function() {
+        removeButton.parentNode.parentNode.removeChild(removeButton.parentNode)
+        let index = idNum.replace('book', '');
+        index -= 1;
+        myLibrary.splice(index, 1);
+    })
 }
