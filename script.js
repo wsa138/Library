@@ -11,7 +11,7 @@ function Book(title, author, pages, status) {
 
 
 function createNewBook() {
-    addedBook = new Book(newTitle.value, newAuthor.value, newPages.value, newStatus.value);
+    addedBook = new Book(newTitle.value, newAuthor.value, newPages.value);
     addBookToLibrary(addedBook);
     createBookCard();
     closeForm();
@@ -26,7 +26,6 @@ let addBookForm = document.getElementById("addBookForm");
 let newTitle = document.getElementById("titleInput")
 let newAuthor = document.getElementById("authorInput")
 let newPages = document.getElementById("pagesInput")
-let newStatus = document.getElementById("statusInput")
 let submitButton = document.getElementById("submitButton")
 let openAddForm= document.getElementById("bookForm");
 
@@ -77,15 +76,13 @@ function createBookCard() {
             case "pages":
                 createBookElement(newestBook, property, idNum);
                 break;
-            case "status":
-                createBookElement(newestBook, property, idNum);
-                break;
         }
     }
+    createStatus(idNum);
     removeBook(idNum);
 }
 
-// Creates new HTML element
+// Creates new HTML element.
 function createBookElement(newestBook, property, idNum) {
     let currentBookDiv = document.getElementById(idNum);
     let bookElement = document.createElement("p");
@@ -94,14 +91,14 @@ function createBookElement(newestBook, property, idNum) {
     currentBookDiv.appendChild(bookElement);
 }
 
-// Creates a remove button on each book's card
+// Creates a remove button on each book's card.
 function removeBook(idNum) {
     let currentBookDiv = document.getElementById(idNum);
     let removeButton = document.createElement("button");
     removeButton.innerHTML = "Remove";
     currentBookDiv.appendChild(removeButton);
 
-    // Removes all the children of the book parent node
+    // Removes book card from the parent node and the book object from myLibrary array.
     removeButton.addEventListener("click", function() {
         removeButton.parentNode.parentNode.removeChild(removeButton.parentNode)
         let index = idNum.replace('book', '');
@@ -109,3 +106,22 @@ function removeBook(idNum) {
         myLibrary.splice(index, 1);
     })
 }
+
+// Create a status select button.
+function createStatus(idNum) {
+    let currentBookDiv = document.getElementById(idNum);
+    let statusOptions = ["Unread", "In-Progress", "Completed"];
+
+    let statusList = document.createElement("select");
+    statusList.className = idNum;
+    statusList.id = "status" + idNum.replace("book", '');
+    currentBookDiv.appendChild(statusList);
+
+    for (i = 0; i < statusOptions.length; i++) {
+        let option = document.createElement("option");
+        option.value = statusOptions[i];
+        option.text = statusOptions[i];
+        statusList.appendChild(option);
+    }
+}
+
