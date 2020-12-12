@@ -1,3 +1,60 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: grey;
+}
+
 #addBookForm {
     display: none;
+}
+
+header {
+    text-align: center;
+    border: solid;
+}
+
+h1 {
+    color: purple;
+    background-color:yellow;
+    text-decoration: underline;
+    font-size: 5em;
+    font-weight: 900;
+    margin: 0;
+}
+
+h2 {
+    color: white;
+    background-color:orange;
+    margin: 0;
+    font-size: 2em;
+}
+
+section {
+    text-align: center;
+}
+
+#allBooks {
+    background-color: yellow;
+}
+
+.book {
+    color: red;
+}
+
+#bookForm {
+    background-color: green;
+    font-size: 1.5em;
+    margin: 1em;
+}
+
+#addBookForm {
+    background-color: rgb(196, 117, 196);
+    font-size: 1.5em;
+    border: solid;
+    max-width: 20em;;
+    margin: auto;
+}
+
+.input {
+    background-color: red;
+    width: 50%;
 }
