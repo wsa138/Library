@@ -1,6 +1,7 @@
+
 body {
     font-family: 'Open Sans', sans-serif;
-    background-color: grey;
+    background-color: #CAF0F8;
 }
 
 #addBookForm {
@@ -10,20 +11,23 @@ body {
 header {
     text-align: center;
     border: solid;
+    border-color: #03045E;
+    border-radius: 1%;
 }
 
 h1 {
-    color: purple;
-    background-color:yellow;
+    color: #03045E;
+    background-color:#00B4D8; 
     text-decoration: underline;
     font-size: 5em;
     font-weight: 900;
     margin: 0;
+    padding-bottom: .15em;
 }
 
 h2 {
-    color: white;
-    background-color:orange;
+    color: #03045E;
+    background-color:#0077B6;
     margin: 0;
     font-size: 2em;
 }
@@ -32,29 +36,95 @@ section {
     text-align: center;
 }
 
-#allBooks {
-    background-color: yellow;
-}
-
-.book {
-    color: red;
-}
-
 #bookForm {
-    background-color: green;
     font-size: 1.5em;
     margin: 1em;
 }
 
 #addBookForm {
-    background-color: rgb(196, 117, 196);
+    background-color: #90E0EF;
     font-size: 1.5em;
     border: solid;
-    max-width: 20em;;
+    border-color: #03045E;
+    color: #03045E;
+    max-width: 20em;
     margin: auto;
+    margin-bottom: 1em;
+    border-radius: 1.5%;
+    padding-bottom: 1em;
+}
+
+.inputItems {
+    text-decoration: underline;
 }
 
 .input {
-    background-color: red;
-    width: 50%;
+    font-size: large;
+    width: 85%;
 }
+
+#submitButton {
+    font-size: .8em;
+}
+
+#resetButton {
+    font-size: .8em;
+}
+
+#allBooks {
+    margin: auto;
+    display: grid;
+    min-width: 60em;
+    max-width: 85em;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: 20em;
+    padding: 5px;
+    row-gap: 1em;
+}
+
+.book {
+    color: #03045E;
+    border: solid;
+    font-weight: bold;
+    font-size: 1.3em;
+    height: 15em;
+}
+
+.book {
+    background-color: #00B4D8;
+    margin: 5px;
+}
+
+.bookNum {
+    background-color: rgb(245, 238, 238);
+    text-align: left;
+    margin-top: 0;
+    padding: 1%;
+    border-radius: 50%;
+    width: 1.4em;
+}
+
+.booktitle {
+    background-color: #90E0EF;
+    height: 1.7em;
+}
+
+.bookauthor {
+    background-color: #90E0EF;
+    height: 1.7em;
+}
+
+.bookpages {
+    background-color: #90E0EF;
+    height: 1.7em;
+}
+
+.statusList {
+    font-size: .8em;
+}
+
+.removeButton {
+    margin-top: 1em;
+    font-size: .8em;
+}
+

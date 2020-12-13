@@ -2,7 +2,7 @@
 
 <html lang="en">
 <head>
-    <title>Library</title>>
+    <title>Library</title>
     <meta charset="UTF-8">
     <meta name="description" content="A simple library app">
     <meta name="keywords" content="library, book">
@@ -11,27 +11,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap" rel="stylesheet"> 
     
 </head>
 
 <body>
     <header>
-        <h1>Library
-            <p>Build Your Personal Library</p>
+        <h1 id="title">Library
+        <h2>Build Your Personal Book Library</h2>
     </header>
 
     <section id="addNewBook">
         <button id="bookForm">Add Book</button>
         <form id="addBookForm">
-            <label for="titleInput">Title:</label><br>
-            <input type="text" id="titleInput" name="titleInput"><br>
-            <label for="authorInput">Author:</label><br>
-            <input type="text" id="authorInput" name="authorInput"><br>
-            <label for="pagesInput">Pages:</label><br>
-            <input type="text" id="pagesInput" name="pagesInput"><br>
-            <label for="statusInput">Status:</label><br>
+            <label for="titleInput" class="inputItems">Title:</label><br>
+            <input type="text" class="input" id="titleInput" name="titleInput" maxlength="50">
             <br>
-            <input type="button" value="submit" id="submitButton">
+            <label for="authorInput" class="inputItems">Author:</label><br>
+            <input type="text" class="input" id="authorInput" name="authorInput"><br>
+            <label for="pagesInput" class="inputItems">Pages:</label><br>
+            <input type="text" class="input" id="pagesInput" name="pagesInput"><br>
+            <br>
+            <input type="button" value="Submit" id="submitButton">
+            <input type="reset" value="Reset" id="resetButton">
         </form>
     </section>
 
