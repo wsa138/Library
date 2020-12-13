@@ -94,7 +94,10 @@ function createBookElement(newestBook, property, idNum) {
 function removeBook(idNum) {
     let currentBookDiv = document.getElementById(idNum);
     let removeButton = document.createElement("button");
+    let breakLine = document.createElement("BR");
     removeButton.innerHTML = "Remove";
+    removeButton.className = "removeButton";
+    currentBookDiv.appendChild(breakLine);
     currentBookDiv.appendChild(removeButton);
 
     // Removes book card from the parent node and the book object from myLibrary array.
@@ -114,6 +117,7 @@ function createStatus(idNum) {
     let statusList = document.createElement("select");
     statusList.className = idNum;
     statusList.id = "status" + idNum.replace("book", '');
+    statusList.className="statusList";
     currentBookDiv.appendChild(statusList);
 
     for (i = 0; i < statusOptions.length; i++) {
