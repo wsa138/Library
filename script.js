@@ -2,11 +2,11 @@ let myLibrary = [];
 let addedBook;
 
 //Constructor function for Book
-function Book(title, author, pages, status) {
+function Book(title, author, pages) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.status = status;
+    this.status = "Unread";
 }
 
 
@@ -40,18 +40,12 @@ function openForm() {
     addBookForm.style.display = "block";
 }
 
-// Closes the add book form when submit button is clicked
+
+// Resets form and closes the add book form when submit button is clicked
 function closeForm() {
+    document.getElementById("addBookForm").reset();
     addBookForm.style.display = "none";
 } 
-
-// Create a sample element in html
-var para = document.createElement("p");
-var node = document.createTextNode("All the book elements here")
-para.appendChild(node);
-
-var element = document.getElementById("allBooks");
-element.appendChild(para);
 
 function createBookCard() {
     let bookSection = document.getElementById("allBooks");
@@ -59,9 +53,14 @@ function createBookCard() {
     let newElement = document.createElement("div");
     let idNum = (`book${indexNum + 1}`);
     newElement.id = idNum;
+    newElement.className = "book";
     newElement.classname = ("bookNumber");
-    newElement.innerHTML = (`#${indexNum + 1}`);
     bookSection.appendChild(newElement);
+    let bookNum = document.createElement("p")
+    bookNum.className = "bookNum";
+    bookNum.innerHTML = `#${indexNum + 1}`;
+    newElement.appendChild(bookNum);
+
 
     let idx = myLibrary.length - 1;
     let newestBook = myLibrary[idx];
