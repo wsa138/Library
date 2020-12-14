@@ -119,10 +119,10 @@ function removeBook(idNum) {
         }
 
         //Recreate myLibrary books as book cards
-        
-
+        recreateLibrary();
     })
 }
+                        
 
 // Create a status select button.
 function createStatus(idNum) {
@@ -143,3 +143,40 @@ function createStatus(idNum) {
     }
 }
 
+function recreateLibrary() {
+    for (i = 0; i < myLibrary.length; i++) {
+        let bookSection = document.getElementById("allBooks");
+        //Gets the book object we are recreating
+        let bookObject = myLibrary[i];
+        //The new book card element
+        let newCard = document.createElement("div");
+        //Set book card id and class.
+        let idNum = (`book${i + 1}`);
+        newCard.id = idNum;
+        newCard.className = "book";
+        //newCard.classname = ("bookNumber");
+        bookSection.appendChild(newCard);
+        let newBook = document.createElement("p")
+        newBook.className = "bookNum";
+        newBook.innerHTML = `#${i + 1}`;
+        newCard.appendChild(newBook);
+
+
+        let currentBook = myLibrary[i];
+        for (let property in currentBook) {
+            switch (property) {
+                case "title":
+                    createBookElement(currentBook, property, idNum);
+                    break;
+                case "author":
+                    createBookElement(currentBook, property, idNum);
+                    break;
+                case "pages":
+                    createBookElement(currentBook, property, idNum);
+                    break;
+            }
+        }
+        createStatus(idNum);
+        removeBook(idNum);
+    }
+}
