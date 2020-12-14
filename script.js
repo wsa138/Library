@@ -130,24 +130,22 @@ function createStatus(idNum) {
     let statusOptions = ["Unread", "In-Progress", "Completed"];
 
     let statusList = document.createElement("select");
-    statusList.className = idNum;
     statusList.id = "status" + idNum.replace("book", '');
     statusList.className="statusList";
     currentBookDiv.appendChild(statusList);
 
-    for (i = 0; i < statusOptions.length; i++) {
+    for (z = 0; z < statusOptions.length; z++) {
         let option = document.createElement("option");
-        option.value = statusOptions[i];
-        option.text = statusOptions[i];
+        option.value = statusOptions[z];
+        option.text = statusOptions[z];
         statusList.appendChild(option);
     }
 }
 
+// Function to recreate myLibrary book objects as book cards.
 function recreateLibrary() {
-    for (i = 0; i < myLibrary.length; i++) {
+    for (i = 0; i < (myLibrary.length); i++) {
         let bookSection = document.getElementById("allBooks");
-        //Gets the book object we are recreating
-        let bookObject = myLibrary[i];
         //The new book card element
         let newCard = document.createElement("div");
         //Set book card id and class.
@@ -156,12 +154,13 @@ function recreateLibrary() {
         newCard.className = "book";
         //newCard.classname = ("bookNumber");
         bookSection.appendChild(newCard);
-        let newBook = document.createElement("p")
-        newBook.className = "bookNum";
-        newBook.innerHTML = `#${i + 1}`;
-        newCard.appendChild(newBook);
+        // Create element for book index display number.
+        let newBookIndex = document.createElement("p")
+        newBookIndex.className = "bookNum";
+        newBookIndex.innerHTML = `#${i + 1}`;
+        newCard.appendChild(newBookIndex);
 
-
+        // Create title, author and pages elements.
         let currentBook = myLibrary[i];
         for (let property in currentBook) {
             switch (property) {
@@ -176,6 +175,8 @@ function recreateLibrary() {
                     break;
             }
         }
+        console.log(myLibrary);
+        //createStatus was preventing loop but i think i fixed it by changing i to z in it.
         createStatus(idNum);
         removeBook(idNum);
     }
