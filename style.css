@@ -114,6 +114,7 @@ section {
     font-style: italic;
     height: .1em;
     padding-bottom: .5em;
+    text-decoration: underline;
 }
 
 .booktitle {
