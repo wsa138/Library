@@ -84,9 +84,13 @@ function createBookCard() {
 // Creates new HTML element.
 function createBookElement(newestBook, property, idNum) {
     let currentBookDiv = document.getElementById(idNum);
+    let elementTitle = document.createElement("p");
     let bookElement = document.createElement("p");
+    elementTitle.className = ("elementTitle");
+    elementTitle.innerHTML = (property.charAt(0).toUpperCase() + property.slice(1));
     bookElement.className = (`book${property} index${idNum.slice(-1)}`);
     bookElement.innerHTML = (newestBook[property]);
+    currentBookDiv.appendChild(elementTitle);
     currentBookDiv.appendChild(bookElement);
 }
 
