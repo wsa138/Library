@@ -47,6 +47,7 @@ function closeForm() {
     addBookForm.style.display = "none";
 } 
 
+// Creates book card.
 function createBookCard() {
     let bookSection = document.getElementById("allBooks");
     let indexNum = myLibrary.length - 1;
@@ -87,7 +88,7 @@ function createBookElement(newestBook, property, idNum) {
     let elementTitle = document.createElement("p");
     let bookElement = document.createElement("p");
     elementTitle.className = ("elementTitle");
-    elementTitle.innerHTML = (property.charAt(0).toUpperCase() + property.slice(1));
+    elementTitle.innerHTML = (property.charAt(0).toUpperCase() + property.slice(1) + ":");
     bookElement.className = (`book${property} index${idNum.slice(-1)}`);
     bookElement.innerHTML = (newestBook[property]);
     currentBookDiv.appendChild(elementTitle);
@@ -110,6 +111,16 @@ function removeBook(idNum) {
         let index = idNum.replace('book', '');
         index -= 1;
         myLibrary.splice(index, 1);
+
+        //Removes all books to prepare for myLibrary books to be re-created.
+        let allBookCards = document.getElementById("allBooks");
+        while (allBookCards.firstChild) {
+            allBookCards.removeChild(allBookCards.firstChild);
+        }
+
+        //Recreate myLibrary books as book cards
+        
+
     })
 }
 
