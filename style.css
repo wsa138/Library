@@ -153,4 +153,13 @@ section {
     height: 1.75em;
 }
 
+@media (max-width:  360px) {
+    #allBooks {
+        display: flex;
+        flex-direction: column;
+    }
 
+    .book {
+        width: 45%;
+    }
+}
