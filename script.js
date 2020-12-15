@@ -1,6 +1,9 @@
 let myLibrary = [];
 let addedBook;
 
+loadLibrary();
+recreateLibrary(myLibrary);
+
 //Constructor function for Book
 function Book(title, author, pages) {
     this.title = title;
@@ -80,6 +83,7 @@ function createBookCard() {
     }
     createStatus(idNum);
     removeBook(idNum);
+    addLocalStorage();
 }
 
 // Creates new HTML element.
@@ -119,7 +123,7 @@ function removeBook(idNum) {
         }
 
         //Recreate myLibrary books as book cards
-        recreateLibrary();
+        recreateLibrary(myLibrary);
     })
 }
                         
@@ -143,7 +147,7 @@ function createStatus(idNum) {
 }
 
 // Function to recreate myLibrary book objects as book cards.
-function recreateLibrary() {
+function recreateLibrary(myLibrary) {
     for (i = 0; i < (myLibrary.length); i++) {
         let bookSection = document.getElementById("allBooks");
         //The new book card element
@@ -175,9 +179,23 @@ function recreateLibrary() {
                     break;
             }
         }
-        console.log(myLibrary);
-        //createStatus was preventing loop but i think i fixed it by changing i to z in it.
         createStatus(idNum);
         removeBook(idNum);
+        addLocalStorage();
     }
+}
+
+
+// Sends myLibrary array of objects to local storage.
+function addLocalStorage() {
+    localStorage.setItem("library", JSON.stringify(myLibrary));
+}
+
+function loadLibrary() {
+    if (localStorage.length < 1) {
+        console.log("no local storage")
+      } else {
+        console.log("some local storage")
+        myLibrary = (JSON.parse(localStorage.getItem("library")))
+      }
 }
