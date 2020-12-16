@@ -8,6 +8,7 @@ let newPages = document.getElementById("pagesInput")
 let submitButton = document.getElementById("submitButton")
 let openAddForm= document.getElementById("bookForm");
 
+
 loadLibrary();
 recreateLibrary(myLibrary);
 
@@ -17,15 +18,14 @@ function Book(title, author, pages) {
     this.title = title;
     this.author = author;
     this.pages = pages;
+    this.status = "Unread";
 }
-
 
 // Opens new book form.
 openAddForm.addEventListener("click", openForm);
 
 // Creates the new book object in myLibrary and creates a new book card.
 submitButton.addEventListener("click", createNewBook);
-
 
 function createNewBook() {
     addedBook = new Book(newTitle.value, newAuthor.value, newPages.value);
@@ -108,6 +108,9 @@ function createStatus(idNum) {
         option.text = statusOptions[z];
         statusList.appendChild(option);
     }
+    document.getElementById(statusList.id).addEventListener("change", updateStatus);
+
+    checkStatus(idNum);
 }
 
 // Function to recreate myLibrary book objects as book cards.
@@ -168,4 +171,20 @@ function removeAllBooks() {
         while (allBookCards.firstChild) {
             allBookCards.removeChild(allBookCards.firstChild);
         }
+}
+
+// Stores cnaged status in book object.
+function updateStatus() {
+    let index = this.parentElement.id.replace("book", "") - 1;
+    myLibrary[index].status = this.value;
+    addLocalStorage();
+}
+
+function checkStatus(idNum) {
+    let cardNum = idNum.replace("book", "");
+    let bookIndex = cardNum - 1;
+    let statusId = "status" + cardNum;
+    let cardStatus = document.getElementById(statusId)
+    let status = myLibrary[bookIndex].status;
+    cardStatus.value = status;
 }
