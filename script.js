@@ -1,16 +1,30 @@
 let myLibrary = [];
 let addedBook;
 
+let addBookForm = document.getElementById("addBookForm");
+let newTitle = document.getElementById("titleInput")
+let newAuthor = document.getElementById("authorInput")
+let newPages = document.getElementById("pagesInput")
+let submitButton = document.getElementById("submitButton")
+let openAddForm= document.getElementById("bookForm");
+
 loadLibrary();
 recreateLibrary(myLibrary);
+
 
 //Constructor function for Book
 function Book(title, author, pages) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.status = "Unread";
 }
+
+
+// Opens new book form.
+openAddForm.addEventListener("click", openForm);
+
+// Creates the new book object in myLibrary and creates a new book card.
+submitButton.addEventListener("click", createNewBook);
 
 
 function createNewBook() {
@@ -20,70 +34,25 @@ function createNewBook() {
     closeForm();
 }
 
-// Adds new book object to library array
 function addBookToLibrary(book) {
     myLibrary.push(book);
 }
 
-let addBookForm = document.getElementById("addBookForm");
-let newTitle = document.getElementById("titleInput")
-let newAuthor = document.getElementById("authorInput")
-let newPages = document.getElementById("pagesInput")
-let submitButton = document.getElementById("submitButton")
-let openAddForm= document.getElementById("bookForm");
-
-// When add book button is clicked, run openForm()
-openAddForm.addEventListener("click", openForm);
-
-// When the submit button is clicked, run createNewBook()
-submitButton.addEventListener("click", createNewBook);
-
-// Function that opens the form to add a book
+// Makes book form visible.
 function openForm() {
     addBookForm.style.display = "block";
 }
 
 
-// Resets form and closes the add book form when submit button is clicked
+// Resets form and closes add book form.
 function closeForm() {
     document.getElementById("addBookForm").reset();
     addBookForm.style.display = "none";
 } 
 
-// Creates book card.
 function createBookCard() {
-    let bookSection = document.getElementById("allBooks");
-    let indexNum = myLibrary.length - 1;
-    let newElement = document.createElement("div");
-    let idNum = (`book${indexNum + 1}`);
-    newElement.id = idNum;
-    newElement.className = "book";
-    newElement.classname = ("bookNumber");
-    bookSection.appendChild(newElement);
-    let bookNum = document.createElement("p")
-    bookNum.className = "bookNum";
-    bookNum.innerHTML = `#${indexNum + 1}`;
-    newElement.appendChild(bookNum);
-
-
-    let idx = myLibrary.length - 1;
-    let newestBook = myLibrary[idx];
-    for (let property in newestBook) {
-        switch (property) {
-            case "title":
-                createBookElement(newestBook, property, idNum);
-                break;
-            case "author":
-                createBookElement(newestBook, property, idNum);
-                break;
-            case "pages":
-                createBookElement(newestBook, property, idNum);
-                break;
-        }
-    }
-    createStatus(idNum);
-    removeBook(idNum);
-    addLocalStorage();
+    removeAllBooks();
+    recreateLibrary(myLibrary)
 }
 
 // Creates new HTML element.
@@ -116,18 +85,13 @@ function removeBook(idNum) {
         index -= 1;
         myLibrary.splice(index, 1);
 
-        //Removes all books to prepare for myLibrary books to be re-created.
-        let allBookCards = document.getElementById("allBooks");
-        while (allBookCards.firstChild) {
-            allBookCards.removeChild(allBookCards.firstChild);
-        }
+        removeAllBooks();
 
         //Recreate myLibrary books as book cards
         recreateLibrary(myLibrary);
     })
 }
                         
-
 // Create a status select button.
 function createStatus(idNum) {
     let currentBookDiv = document.getElementById(idNum);
@@ -185,7 +149,6 @@ function recreateLibrary(myLibrary) {
     }
 }
 
-
 // Sends myLibrary array of objects to local storage.
 function addLocalStorage() {
     localStorage.setItem("library", JSON.stringify(myLibrary));
@@ -198,4 +161,11 @@ function loadLibrary() {
         console.log("some local storage")
         myLibrary = (JSON.parse(localStorage.getItem("library")))
       }
+}
+
+function removeAllBooks() {
+    let allBookCards = document.getElementById("allBooks");
+        while (allBookCards.firstChild) {
+            allBookCards.removeChild(allBookCards.firstChild);
+        }
 }
