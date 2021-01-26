@@ -13,13 +13,16 @@ loadLibrary();
 recreateLibrary(myLibrary);
 
 
-//Constructor function for Book
-function Book(title, author, pages) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.status = "Unread";
-}
+//Class for Book
+class Book{
+    constructor(title, author, pages){
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+    }
+
+    status = "Unread";
+};
 
 // Opens new book form.
 openAddForm.addEventListener("click", openForm);
